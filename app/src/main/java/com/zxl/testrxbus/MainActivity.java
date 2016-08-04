@@ -1,9 +1,8 @@
 package com.zxl.testrxbus;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,20 +12,8 @@ public class MainActivity extends AppCompatActivity {
         RxBus.getDefault().post(beanRxBusEvent);
     }
 
-    public void sub() {
-        RxBus.getDefault().toObservable(RxBusEvent.class)
-                .subscribe(new RxBusSubscriber<RxBusEvent>() {
-                               @Override
-                               protected void onEvent(RxBusEvent rxBusEvent) {
-
-                               }
-
-                               @Override
-                               public void onError(Throwable e) {
-                                   super.onError(e);
-                               }
-                           }
-
-                );
+    @Override
+    public void bindData(RxBusEvent rxBusEvent) {
+        super.bindData(rxBusEvent);
     }
 }
